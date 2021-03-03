@@ -1,0 +1,23 @@
+{
+  "name": "task-tracker-backend",
+  "version": "1.0.0",
+  "description": "backend service for task-tracker",
+  "main": "app.js",
+  "scripts": {
+    "run": "node ./app.js",
+    "test": "npm test"
+  },
+  "author": "eugenmorozov",
+  "license": "ISC",
+  "dependencies": {
+    "better-module-alias": "^1.1.0",
+    "koa": "^2.13.1",
+    "koa-bodyparser": "^4.3.0",
+    "koa-router": "^10.0.0",
+    "koa-send": "^5.0.1"
+  },
+  "_moduleAliases": {
+    "$Routes": "app/Routes",
+    "$Controllers": "app/Controllers"
+  }
+}
