@@ -1,0 +1,17 @@
+{
+  "name": "task-tracker-frontend",
+  "version": "1.0.0",
+  "description": "simple frontend for task tracker forked from https://github.com/translation-gang/ru.vuejs.org/tree/master/src/v2/examples/vue-20-todomvc",
+  "main": "index.html",
+  "scripts": {
+    "start": "serve"
+  },
+  "keywords": [],
+  "license": "MIT",
+  "devDependencies": {
+    "serve": "^11.2.0"
+  },
+  "dependencies": {
+    "axios": "^0.21.1"
+  }
+}

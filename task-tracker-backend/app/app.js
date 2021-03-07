@@ -1,8 +1,9 @@
 console.time('appstart');
 const server = require('../Server/index.js');
+const mongoose = require('$Modules/Mongoose')
 
 require('$Routes/index');
-const mongoose = require('$Modules/Mongoose')
+
 const App = new class {
 	init() {
 		const port = 8080;
