@@ -44,7 +44,7 @@
                     :class="{ completed: todo.completed, editing: todo == editedTodo }"
             >
                 <div class="view">
-                    <input @change="changeStatus(todo)" class="toggle" type="checkbox" v-model="todo.completed" />
+                    <input @change="changeStatus(todo)" class="toggle" type="checkbox" :checked=todo.completed />
                     <label @dblclick="editTodo(todo)">{{ todo.title }}</label>
                     <button class="destroy" @click="removeTodo(todo)"></button>
                 </div>
@@ -146,6 +146,24 @@
 			}
 		},
 
+		beforeCreate(){
+			axios
+				.get('http://127.0.0.1:8080/tasks/list')
+				.then(response => {
+					var smth = response.data.tasks;
+                    const todos = smth.map( (todo, idx) => {
+                    	return {
+                    		bid: todo._id,
+                            completed: todo.status === 'done',
+                            title: todo.description,
+                            id: idx,
+                        }
+                    })
+					console.log(smth);
+                    this.todos = todos;
+				});
+		},
+
 		// computed properties
 		// http://vuejs.org/guide/computed.html
 		computed: {
@@ -208,12 +226,29 @@
 				this.editedTodo = todo;
 			},
 
-            changeStatus: function(todo) {
-				const prevState = !todo.completed;
-				todo.completed = prevState;
-	            if(todo.completed){
-
-                };
+            changeStatus: async function(todo) {
+				//reopen
+				if(todo.completed){
+					axios({
+						method: 'post',
+						url: `http://127.0.0.1:8080/tasks/reopen`,
+						data: {
+							task_id: todo.bid,
+						}
+					}).then(response => {
+						todo.completed = !todo.completed
+					}).catch( e => console.log(e));
+                } else {
+					axios({
+						method: 'post',
+						url: `http://127.0.0.1:8080/tasks/close`,
+						data: {
+							task_id: todo.bid,
+						}
+					}).then(response => {
+						todo.completed = !todo.completed
+					}).catch( e => console.log(e));
+                }
             },
 
 			doneEdit: function(todo) {
