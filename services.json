@@ -1,0 +1,15 @@
+{
+  "dev": {
+    "auth": {
+      "host": "localhost",
+      "port": "8079"
+    },
+    "task_tracker": {
+      "host": "localhost",
+      "port": "8080"
+    }
+  },
+  "production": {
+
+  }
+}

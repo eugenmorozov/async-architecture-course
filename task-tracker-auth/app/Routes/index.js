@@ -3,6 +3,7 @@ const router = server.getRouter();
 
 router.post('/api/register', require('$Controllers/Auth/Register'));
 router.post('/api/login', require('$Controllers/Auth/Login'));
+router.post('/api/get-user', require('$Controllers/Auth/GetUser'));
 
 //пример того, как работает аутентификация пользователя
 const authN = require('$Middleware/AuthN');
