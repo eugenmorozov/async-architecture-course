@@ -1,4 +1,5 @@
 const User = require('$Models/User')
+const { sendEvent } = require('$Modules/MB');
 
 module.exports = async (ctx) => {
 	const {
@@ -13,7 +14,10 @@ module.exports = async (ctx) => {
 		role
 	});
 	await newUser.save();
-
+	await sendEvent('users', 'UserCreated', {
+		id: newUser._id,
+		login: newUser.login,
+	})
 	ctx.body = {
 		success: true
 	}
