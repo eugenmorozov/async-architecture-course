@@ -1,16 +1,13 @@
 const amqp = require('amqplib/callback_api');
 const CONN_URL = 'amqps://njmtrfcd:ho4SCfZtmeueDfg9o6XuJB3n1rAkziBP@kangaroo.rmq.cloudamqp.com/njmtrfcd';
-const queueHandler = require('./queueHandler');
 let ch = null;
 amqp.connect(CONN_URL, function (err, conn) {
 	conn.createChannel(function (err, channel) {
 		ch = channel;
-
-		// ch.consume('users', queueHandler, {
-		// 	noAck: true
-		// });
+		require('./queueHandler')(ch);
 	});
 });
+
 
 const sendEvent = async (queueName, eventName, data) => {
 	ch.sendToQueue(queueName, new Buffer(JSON.stringify({
@@ -24,4 +21,4 @@ process.on('exit', (code) => {
 	console.log(`Closing rabbitmq channel`);
 });
 
-module.exports = {sendEvent};
+module.exports = { sendEvent };

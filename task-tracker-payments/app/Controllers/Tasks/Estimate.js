@@ -1,5 +1,6 @@
 const Task = require('$Models/Task')
 const { sendEvent } = require('$Modules/MB');
+
 function getRandomInt(min, max) {
 	min = Math.ceil(min);
 	max = Math.floor(max);
@@ -7,13 +8,13 @@ function getRandomInt(min, max) {
 }
 
 module.exports = async data => {
-	const { id, description } = data;
+	const { id: taskID, description } = data;
 
 	const cost = getRandomInt(10, 21);
 	const reward = getRandomInt(20, 41);
 
 	const result = await Task.create({
-		_id: id,
+		_id: taskID,
 		cost, reward,
 		description,
 	});

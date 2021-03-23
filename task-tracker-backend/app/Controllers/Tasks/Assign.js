@@ -18,7 +18,7 @@ module.exports = async ctx => {
 	const taskPromises = tasks.map( async task => {
 		const performer = performers[getRandomInt(0, performers.length)];
 		task.assignee_id = performer.id;
-		const { _id, description, assignee_id } = task.toObject
+		const { _id, description, assignee_id } = task.toObject();
 		await task.save();
 
 		await sendEvent('tasks', 'TaskAssigned', {

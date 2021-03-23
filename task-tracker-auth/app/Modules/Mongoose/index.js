@@ -4,7 +4,7 @@ const password = process.env.MONGO_PWD || false;
 
 const connect = async () => {
 	await mongoose
-		.connect(`mongodb+srv://${login}:${password}@cluster0.zfuvz.mongodb.net/myFirstDatabase?retryWrites=true&w=majority`, {
+		.connect(`mongodb+srv://${login}:${password}@cluster0.zfuvz.mongodb.net/Auth?retryWrites=true&w=majority`, {
 			useNewUrlParser: true,
 			useUnifiedTopology: true,
 			useCreateIndex: true,

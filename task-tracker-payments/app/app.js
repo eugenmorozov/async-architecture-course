@@ -9,6 +9,7 @@ const App = new class {
 			.then( () => {
 				server.startServer(port);
 				require('$Routes/index');
+				require('$Modules/MB')
 				console.timeEnd('appstart');
 				console.log(module.filename, `listening on *: ${port}`);
 			});
