@@ -7,7 +7,7 @@ const TaskSchema = new mongoose.Schema({
 	description: {
 		type: String,
 	},
-	assignee: {
+	assignee_id: {
 		type: String,
 		index: true,
 	},

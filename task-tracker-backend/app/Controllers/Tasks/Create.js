@@ -1,6 +1,8 @@
 const Task = require('$Models/Task')
 const { omit } = require('lodash');
-module.exports = async (ctx, next) => {
+const { sendEvent } = require('$Modules/MB');
+
+module.exports = async ctx => {
 	const { description } = ctx.request.body;
 	if(!description){
 		throw new Error('description required');
@@ -9,6 +11,11 @@ module.exports = async (ctx, next) => {
 		description,
 	})).toObject();
 	result.id = result._id;
+
+	await sendEvent('tasks', 'TaskCreated', {
+		id: result.id,
+		description: result.description
+	});
 
 	ctx.body = {
 		...omit(result,['__v', '_id'])

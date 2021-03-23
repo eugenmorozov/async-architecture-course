@@ -2,14 +2,13 @@ console.time('appstart');
 const server = require('../Server/index.js');
 const mongoose = require('$Modules/Mongoose')
 
-require('$Routes/index');
-
 const App = new class {
 	init() {
 		const port = 8080;
 		mongoose.connectDB()
-			.then( () =>{
+			.then( () => {
 				server.startServer(port);
+				require('$Routes/index');
 				console.timeEnd('appstart');
 				console.log(module.filename, `listening on *: ${port}`);
 			});
