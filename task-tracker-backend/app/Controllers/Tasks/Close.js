@@ -21,7 +21,7 @@ module.exports = async (ctx, next) => {
 	task.status = Task.statuses.done;
 	await task.save();
 
-	await sendEvent('tasks', 'TaskAssigned', {
+	await sendEvent('tasks', 'TaskClosed', {
 		id: taskID,
 		description: task.description,
 		assignee_id: task.assignee_id,
