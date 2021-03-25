@@ -7,6 +7,10 @@
     "task_tracker": {
       "host": "localhost",
       "port": "8080"
+    },
+    "payments": {
+      "host": "localhost",
+      "port": "8078"
     }
   },
   "production": {
