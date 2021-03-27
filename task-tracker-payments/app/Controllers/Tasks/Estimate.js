@@ -10,8 +10,8 @@ function getRandomInt(min, max) {
 module.exports = async data => {
 	const { id: taskID, description } = data;
 
-	const cost = getRandomInt(10, 21);
-	const reward = getRandomInt(20, 41);
+	const cost = getRandomInt(10, 20);
+	const reward = getRandomInt(20, 40);
 
 	const result = await Task.create({
 		_id: taskID,

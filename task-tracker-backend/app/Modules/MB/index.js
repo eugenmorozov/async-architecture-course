@@ -8,7 +8,12 @@ amqp.connect(CONN_URL, function (err, conn) {
 	conn.createChannel(function (err, channel) {
 		ch = channel;
 
-		ch.consume('users', queueHandler, {
+		ch.consume('users', (msg) => {
+			const event = JSON.parse(msg.content.toString());
+			console.log(module.filename, 'получено событие', event);
+			validateEventSchema({...event})
+			return queueHandler(msg)
+		}, {
 			noAck: true
 		});
 	});
