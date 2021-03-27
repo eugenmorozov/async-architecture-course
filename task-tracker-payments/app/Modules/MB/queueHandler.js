@@ -1,9 +1,15 @@
 const Estimate = require('$Controllers/Tasks/Estimate');
 const Withdraw = require('$Controllers/Wallet/Withdraw');
 const Charge = require('$Controllers/Wallet/Charge');
+const validateEventSchema = require('$Modules/SchemaRegistry');
 
 const handler = async msg => {
-	console.log(module.filename, 'получено событие', msg.content.toString());
+	const event = JSON.parse(msg.content.toString());
+	console.log(module.filename, 'получено событие', event);
+	validateEventSchema({
+		eventName: event.name,
+		data: event.data
+	});
 	const { name, data } = JSON.parse(msg.content.toString());
 	switch (name) {
 		case 'TaskCreated':
