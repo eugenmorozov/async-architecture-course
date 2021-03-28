@@ -1,7 +1,7 @@
 const validateEventSchema = require('$Modules/SchemaRegistry');
 
-const Estimate = require('$Controllers/Tasks/UpdateMostExpensiveTask');
-const UpdateDayBalance = require('$Controllers/Tasks/UpdateDayBalance');
+const UpdateMostExpensiveTask = require('$Controllers/Events/UpdateMostExpensiveTask');
+const UpdateDayBalance = require('$Controllers/Events/UpdateDayBalance');
 
 const handler = async msg => {
 	const event = JSON.parse(msg.content.toString());
@@ -13,7 +13,7 @@ const handler = async msg => {
 	const { name, data } = JSON.parse(msg.content.toString());
 	switch (name) {
 		case 'TaskEstimated':
-			await Estimate(data);
+			await UpdateMostExpensiveTask(data);
 			break;
 		case 'WalletCharged':
 			await UpdateDayBalance(data);
