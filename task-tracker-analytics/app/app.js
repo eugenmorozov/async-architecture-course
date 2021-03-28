@@ -4,7 +4,7 @@ const mongoose = require('$Modules/Mongoose')
 
 const App = new class {
 	init() {
-		const port = 8077;
+		const port = 8078;
 		mongoose.connectDB()
 			.then( () => {
 				server.startServer(port);

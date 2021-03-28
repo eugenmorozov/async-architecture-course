@@ -22,7 +22,7 @@ module.exports = async data => {
 	await sendEvent('payments', 'WalletCharged', {
 		employee_id: assigneeID,
 		total: task.reward,
-		description: `Задача ${task._id} выполнена сотрудником ${assigneeID}, будет начислено ${task.cost} деняк`,
+		description: `Задача ${task._id} выполнена сотрудником ${assigneeID}, будет начислено ${task.reward} деняк`,
 		task_description: description,
 	});
 }
