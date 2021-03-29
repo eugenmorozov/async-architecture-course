@@ -11,6 +11,10 @@
     "payments": {
       "host": "localhost",
       "port": "8078"
+    },
+    "analytics": {
+      "host": "localhost",
+      "port": "8077"
     }
   },
   "production": {

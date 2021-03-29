@@ -4,7 +4,10 @@ const mongoose = require('$Modules/Mongoose')
 
 const App = new class {
 	init() {
-		const port = 8078;
+		const env = process.env.env || 'dev';
+		const service = 'payments';
+		const config = require('../../common-packages/Config')(env);
+		const port = config[service].port;
 		mongoose.connectDB()
 			.then( () => {
 				server.startServer(port);
